@@ -1,0 +1,34 @@
+{
+  "name": "nioc",
+  "description": "IOC/DI for Node.js",
+  "version": "1.0.8",
+  "devDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "main": "bin/nioc",
+  "directories": {
+    "example": "example"
+  },
+  "dependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-remove-logging": "~0.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/psmithiv/nioc.git"
+  },
+  "keywords": [
+    "IOC",
+    "DI",
+    "NodeJS"
+  ],
+  "author": "Paul C. Smith IV",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/psmithiv/nioc/issues"
+  }
+}

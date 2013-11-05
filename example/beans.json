@@ -1,0 +1,26 @@
+[{
+    "id": "beanA",
+    "path": "./beans/BeanA.js",
+    "config": {
+        "configProp1": "foo",
+        "configProp2": "bar"
+    }
+},{
+    "id": "beanAA",
+    "path": "./beans/BeanA.js",
+    "config": {
+        "configProp1": "foo2",
+        "configProp2": "bar2"
+    }
+},{
+    "id": "beanB",
+    "path": "./beans/BeanB.js",
+    "config": [
+        "arrayItem1",
+        "arrayItem2",
+        "arrayItem3"
+    ]
+},{
+    "id": "beanC",
+    "path": "./beans/BeanC.js"
+}]
