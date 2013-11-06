@@ -1,26 +1,37 @@
-[{
-    "id": "beanA",
-    "path": "./beans/BeanA.js",
-    "config": {
-        "configProp1": "foo",
-        "configProp2": "bar"
+{
+    "beanC" : {
+        "path": "./beans/BeanC.js"
+    },
+
+    "beanA": {
+        "path": "./beans/BeanA.js",
+        "config": {
+            "configProp1": "foo",
+            "configProp2": "bar"
+        },
+        "postConstruct": [{
+            "method": "postConstructA",
+            "arguments": [
+                "postConstructParamString",
+                100
+            ]
+        }]
+    },
+
+    "beanAA": {
+        "path": "./beans/BeanA.js",
+        "config": {
+            "configProp1": "foo2",
+            "configProp2": "bar2"
+        }
+    },
+
+    "beanB": {
+        "path": "./beans/BeanB.js",
+        "config": [
+            "arrayItem1",
+            "arrayItem2",
+            "arrayItem3"
+        ]
     }
-},{
-    "id": "beanAA",
-    "path": "./beans/BeanA.js",
-    "config": {
-        "configProp1": "foo2",
-        "configProp2": "bar2"
-    }
-},{
-    "id": "beanB",
-    "path": "./beans/BeanB.js",
-    "config": [
-        "arrayItem1",
-        "arrayItem2",
-        "arrayItem3"
-    ]
-},{
-    "id": "beanC",
-    "path": "./beans/BeanC.js"
-}]
+}

@@ -7,7 +7,7 @@ exports = module.exports = init;
 function init() {
     /**
      * @private
-     * @type {BeanC}
+     * @type {*}
      */
     var me = this;
 

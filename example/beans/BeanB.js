@@ -1,3 +1,4 @@
+
 //wire up module
 exports = module.exports = init;
 
@@ -7,7 +8,7 @@ exports = module.exports = init;
 function init(config) {
     /**
      * @private
-     * @type {BeanB}
+     * @type {*}
      */
     var me = this;
 
@@ -20,7 +21,10 @@ function init(config) {
     /**
      * @constructor
      */
-    (function() {
+    function constructor() {
         me.configArray = config;
-    })();
+    };
+
+    //construct object
+    constructor();
 }
