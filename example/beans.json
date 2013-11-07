@@ -1,10 +1,10 @@
 {
     "beanC" : {
-        "path": "./beans/BeanC.js"
+        "path": "../../../beans/BeanC.js"
     },
 
     "beanA": {
-        "path": "./beans/BeanA.js",
+        "path": "../../../beans/BeanA.js",
         "config": {
             "configProp1": "foo",
             "configProp2": "bar"
@@ -19,7 +19,7 @@
     },
 
     "beanAA": {
-        "path": "./beans/BeanA.js",
+        "path": "../../../beans/BeanA.js",
         "config": {
             "configProp1": "foo2",
             "configProp2": "bar2"
@@ -27,7 +27,7 @@
     },
 
     "beanB": {
-        "path": "./beans/BeanB.js",
+        "path": "../../../beans/BeanB.js",
         "config": [
             "arrayItem1",
             "arrayItem2",
