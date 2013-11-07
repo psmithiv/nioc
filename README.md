@@ -154,7 +154,7 @@ function init(config) {
         console.log('INFO: BeanA.postConstructB  -  arrayArgument: ' + arrayArgument);
     }
 
-    //constructo object
+    //construct object
     constructor();
 }
 ```
@@ -184,3 +184,5 @@ An example of using NIoc can be found in the 'example' folder of this project. T
 * Unit Tests
 * Proper logging that can be disabled in a production environment.
 
+##Developers
+* Paul C Smith IV (Creator): [email](mailto: paul.smith.iv@ninthavenuemedia.com) - [linkedin](http://www.linkedin.com/pub/paul-smith-iv/75/315/44a/)
