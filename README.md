@@ -164,12 +164,12 @@ The last part of the equation is injecting beans. This can be done from any modu
 
 First is to inject an entire bean:
 ```js
-inject('bean id');
+var bean = inject('bean id');
 ```
 
 Second is to inject a specific bean property:
 ```js
-inject('bean id', 'bean property');
+var beanProp = inject('bean id', 'bean property');
 ```
 
 ##Examples
