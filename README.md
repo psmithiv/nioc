@@ -7,7 +7,6 @@ Released under [MIT License] (https://github.com/psmithiv/nioc/blob/master/LICEN
 
 ## Highlights
 * Beans are defined via a simple JSON file.
-* Compatable with both Object as well as Class based node.js modules.
 * All beans are created at application launch. 
 * In the event that a bean injects a bean that has not yet been created, it will be created on demand.
 * Ability to pass config objects to Class based modules and/or call bean methods post construction.
