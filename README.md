@@ -9,7 +9,7 @@ Released under [MIT License] (https://github.com/psmithiv/nioc/blob/master/LICEN
 * Beans are defined via a simple JSON file.
 * All beans are created at application launch. 
 * In the event that a bean injects a bean that has not yet been created, it will be created on demand.
-* Ability to pass config objects to modules on require and/or call bean methods post construction.
+* Ability to pass config objects to beans on creation and/or call bean methods post construction.
 * Injection available via global 'inject' method.
 * Ability to inject both complete beans as well as individual bean properties.
 
