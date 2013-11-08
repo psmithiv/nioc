@@ -22,7 +22,7 @@ In your applications index.js/server.js file simply require the NIoc module and 
 
 ```js
 var nioc = require('nioc');
-nioc('path to beans.json file');
+new nioc('path to beans.json file');
 ```
 
 <b>NOTE: Since nioc.js is requiring/loading the definitions file. The path is relative to 'node_modules/nioc/bin'. It is reccomended that you set the NODE_PATH environmental variable to the root of your application and reference your bean definitions json file from there.</b>
