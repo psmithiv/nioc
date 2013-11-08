@@ -18,7 +18,7 @@ From within your project, execute 'npm install nioc' from the command line. Npm 
 
 ## Getting Started
 ### Initializing NIoc
-In your applications index.js/server.js file simply require the NIoc module and call the returned method passing in the path to your bean definitions json file. If no bean definitions file is specified when calling 'nioc()', NIoc will automatically look for a beans.json file one level up from 'node_modules'.
+In your applications index.js/server.js file simply require the NIoc module and instantiate the returned method as a new object passing in the path to your bean definitions json file. If no bean definitions file is specified when calling 'nioc()', NIoc will automatically look for a beans.json file one level up from 'node_modules'.
 
 ```js
 var nioc = require('nioc');
