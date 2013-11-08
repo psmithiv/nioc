@@ -43,7 +43,7 @@ In your beans.json file, beans are defined as objects and reqire a single 'path'
 Additionaly, there are two other properties that may also be specified on the bean object: 'config' and 'postConstruct'.
 
 #### "config"
-If the node.js module is a javascript class (typeof exports = module.exports === 'function'), NIoc will create a new instance of the module/class and pass the value of the config property as an attribute to the method specified.
+NIoc will create a new instance of the module and pass the value of the config property as an attribute to the method specified.
 
 ```js
 {
@@ -96,7 +96,7 @@ Lastly, a 'postConstruct' array may be defined on the bean object. This property
 ```
 
 ### Creating Beans
-The recomended approach to creating beans for NIoc is to define class based node.js modules as seen below. This will allow for the same node.js module to be defined more than once using different id's as well as allow for using the 'config' property on the bean definition. Also, this will allow for planned future features such as specifying <b>"singleton": false</b> on the bean definition so that a unique instance of the bean will be returned each time <b>inject('bean id')</b> is called.
+The recomended approach to creating beans for NIoc is to define class based node.js modules as seen below. When creating the bean, NIoc will automatically create a new instance of the method specified by exports/module.exports. This will allow for the same node.js module to be defined more than once using different id's. Also, this will allow for planned future features such as specifying <b>"singleton": false</b> on the bean definition so that a unique instance of the bean will be returned each time <b>inject('bean id')</b> is called.
 
 ```js
 //wire up module
