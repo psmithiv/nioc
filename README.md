@@ -97,9 +97,7 @@ Lastly, a 'postConstruct' array may be defined on the bean object. This property
 ```
 
 ### Creating Beans
-The recomended approach to creating beans for NIoc is to define class based node.js modules as seen below. This will allow for the same node.js module to be defined more than once using different id's as well as allow for using the 'config' property on the bean definition. Also, this will allow for planned future features such as specifying <b>"singleton": false</b> on the bean definition so that a unique instance of the bean will be returned each time <b>inject('bean id')</b> is called. OOP is good ;)
-
-<b>NOTE: Object based support is in place for 3rd party modules (ex. express)</b>.
+The recomended approach to creating beans for NIoc is to define class based node.js modules as seen below. This will allow for the same node.js module to be defined more than once using different id's as well as allow for using the 'config' property on the bean definition. Also, this will allow for planned future features such as specifying <b>"singleton": false</b> on the bean definition so that a unique instance of the bean will be returned each time <b>inject('bean id')</b> is called.
 
 ```js
 //wire up module
