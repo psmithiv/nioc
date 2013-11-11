@@ -3,6 +3,14 @@
         "path": "../../../beans/BeanC.js"
     },
 
+    "beanAA": {
+        "path": "../../../beans/BeanA.js",
+        "config": {
+            "configProp1": "foo2",
+            "configProp2": "bar2"
+        }
+    },
+
     "beanA": {
         "path": "../../../beans/BeanA.js",
         "config": {
@@ -16,14 +24,6 @@
                 100
             ]
         }]
-    },
-
-    "beanAA": {
-        "path": "../../../beans/BeanA.js",
-        "config": {
-            "configProp1": "foo2",
-            "configProp2": "bar2"
-        }
     },
 
     "beanB": {

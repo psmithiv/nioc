@@ -1,6 +1,6 @@
 //Require and Instantiate NIoc
 var nioc = require('nioc');
-nioc('../../../beans.json');
+new nioc('../../../beans.json');
 
 console.log('');
 

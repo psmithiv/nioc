@@ -68,10 +68,7 @@ function init(beanDefinitionsURL) {
 
         //load bean
         var bean = require(beanDefinition.path);
-
-        //check to see if modules exports = module.exports === 'function', if so instantiate object
-        if(typeof bean === 'function')
-            bean = new bean(beanDefinition.config);
+        bean = new bean(beanDefinition.config);
 
         //tack id onto bean for internal use
         bean.$id = id;

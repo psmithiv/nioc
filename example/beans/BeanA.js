@@ -41,6 +41,6 @@ function init(config) {
         console.log('INFO: BeanA.postConstructB  -  arrayArgument: ' + arrayArgument);
     }
 
-    //constructo object
+    //construct object
     constructor();
 }
