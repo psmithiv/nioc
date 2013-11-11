@@ -176,6 +176,7 @@ An example of using NIoc can be found in the 'example' folder of this project. T
 
 ##Roadmap
 * Features:
+<br> * Create/Implement class definition system allowing for the definition of public, private, protected, static.
 <br> * Add ability to specify <b>"singleton": false</b> on bean definiton so that a uniquie instance of said bean is returned each time <b>inject('bean id')</b> is called.
 <br> * Add ability to specify more than one bean definitions file.
 * Unit Tests
