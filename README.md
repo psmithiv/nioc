@@ -96,7 +96,7 @@ A 'postConstruct' array may be defined on the bean object. This property consist
 ```
 
 #### "singleton"
-Lastly, beens may be tagged with "singleton": false. This will instruct nioc to create a new instance of the bean every time it is injected.
+Lastly, beans may be tagged with "singleton": false. This will instruct nioc to create a new instance of the bean every time it is injected.
 
 ```js
 {
