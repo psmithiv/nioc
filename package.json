@@ -3,16 +3,16 @@
   "description": "IOC/DI for Node.js",
   "version": "2.1.0",
   "devDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-remove-logging": "~0.1.1"
   },
-  "main": "bin/nioc",
+  "main": "lib/nioc",
   "directories": {
     "example": "example"
   },
   "dependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-remove-logging": "~0.1.1"
+
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

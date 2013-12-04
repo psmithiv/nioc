@@ -6,14 +6,14 @@ module.exports = function(grunt) {
         copy: {
             debug: {
                 src: ['src/<%= pkg.name %>.js'],
-                dest: 'bin/<%= pkg.name %>.js'
+                dest: 'lib/<%= pkg.name %>.js'
             }
         },
 
         removelogging: {
             dist: {
                 src: 'src/<%= pkg.name %>.js',
-                dest: "bin/<%= pkg.name %>.js"
+                dest: "lib/<%= pkg.name %>.js"
             }
         }
     });
