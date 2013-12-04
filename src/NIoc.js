@@ -117,8 +117,8 @@ function init(beanDefinitionsURL) {
      * @returns {*}
      */
     global.inject = function(id, property) {
-        //check for bean -  if bean doesn't instance exists call createBean
-        var bean = beans[id] ? beans[id] : me.createBean(id, beanDefinitions[id]);;
+        //check for bean -  if bean instance doesn't exist call createBean
+        var bean = beans[id] ? beans[id] : me.createBean(id, beanDefinitions[id]);
 
         //check to see if injecting a bean property, return accordingly
         if(property) {
