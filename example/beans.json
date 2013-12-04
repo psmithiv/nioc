@@ -33,5 +33,10 @@
             "arrayItem2",
             "arrayItem3"
         ]
+    },
+
+    "beanD" : {
+        "path": "../../../beans/BeanD.js",
+        "singleton": false
     }
 }

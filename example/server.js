@@ -28,6 +28,16 @@ console.log('INFO: beanC.getBeanAConfigProp1(): ' + getBeanAConfigProp1);
 console.log('INFO: beanC.beanAA.configProp1: ' + beanC.beanAA.configProp1);
 console.log('INFO: beanC.beanB.configArray: ' + beanC.beanB.configArray + '\n');
 
+//Non Singleton Bean
+//BeanD
+var beanD = inject('beanD');
+console.log('INFO: beanD.beanDProp: ' + beanD.beanDProp);
+beanD.beanDProp = 'I am an updated BeanD';
+console.log('INFO: updated beanD.beanDProp: ' + beanD.beanDProp + '\n');
+
+var beanD2 = inject('beanD');
+console.log('INFO: beanD2.beanDProp: ' + beanD2.beanDProp + '\n');
+
 //Inject Bean Properties
 //BeanA.configProp1
 var beanAConfigProp1 = inject('beanA', 'configProp1');

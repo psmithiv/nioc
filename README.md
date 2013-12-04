@@ -170,14 +170,12 @@ var beanProp = inject('bean id', 'bean property');
 ```
 
 ##Examples
-An example of using NIoc can be found in the 'example' folder of this project. To run the example execute 'npm install nioc' from the command line in the example folder.
+An example of using NIoc can be found in the 'example' folder of this project. To run the example execute 'npm install nioc' from the command line in the example folder and launch server.js via Node.js.
 
-* Using NIoc with express and mongodb (coming soon)
+* MEN Stack (mongoose, express, nioc) - Using NIoc with express and mongoose to create REST services (coming soon)
 
 ##Roadmap
 * Features:
-<br> * Create/Implement class definition system allowing for the definition of public, private, protected, static.
-<br> * Add ability to specify <b>"singleton": false</b> on bean definiton so that a uniquie instance of said bean is returned each time <b>inject('bean id')</b> is called.
 <br> * Add ability to specify more than one bean definitions file.
 * Unit Tests
 * Proper logging that can be disabled in a production environment.

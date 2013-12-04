@@ -7,9 +7,6 @@ exports = module.exports = init;
  * @class
  */
 function init(beanDefinitionsURL) {
-    //dependencies
-    var path = require('path');
-
     /**
      * @private
      * @type {*}
@@ -44,9 +41,9 @@ function init(beanDefinitionsURL) {
         console.log('DEBUG: Loading bean definitions  -  path: ' + beanDefinitionsURL);
         beanDefinitions = require(beanDefinitionsURL);
 
-        //create beans
+        //create singleton beans
         for(var beanId in beanDefinitions) {
-            if(!beans[beanId]) {
+            if(!beans[beanId] && beanDefinitions[beanId].singleton != false) {
                 me.createBean(beanId, beanDefinitions[beanId]);
             }
         }
@@ -64,7 +61,7 @@ function init(beanDefinitionsURL) {
      * @returns {Object} The created/registered bean
      */
     me.createBean = function(id, beanDefinition) {
-        console.log('DEBUG: Loading bean  -  id: ' + id + '  -  path: ' + beanDefinition.path + '  -  config: ' + beanDefinition.config);
+        console.log('DEBUG: Creating bean  -  id: ' + id + '  -  path: ' + beanDefinition.path + '  -  config: ' + beanDefinition.config);
 
         //load bean
         var bean = require(beanDefinition.path);
@@ -82,20 +79,23 @@ function init(beanDefinitionsURL) {
             }
         }
 
-        //register bean
-        beans[id] = bean;
+        //if singleton == false, do not register so that it is created again next time it gets injected
+        if(beanDefinition.singleton != false)
+            beans[id] = bean;
 
         return bean;
     };
 
     /**
+     * Executes bean method post construction within the scope of the bean
+     *
      * @private
-     * @param bean
-     * @param postConstructDefinition
+     * @param {Object} bean The bean to execute the method on
+     * @param {Object} postConstructDefinition The definition object containing the method name to call as well as attributes to pass to the method
      */
     function performPostConstructMethodCall(bean, postConstructDefinition) {
         console.log('DEBUG: Performing post construction method call  -  beanId: ' + bean.$id + '  -  method: ' + postConstructDefinition.method + '  -  arguments: ' + postConstructDefinition.arguments);
-        bean[postConstructDefinition.method].apply(this, postConstructDefinition.arguments);
+        bean[postConstructDefinition.method].apply(bean, postConstructDefinition.arguments);
     }
 
     /**
@@ -118,17 +118,15 @@ function init(beanDefinitionsURL) {
      */
     global.inject = function(id, property) {
         //check for bean -  if bean doesn't instance exists call createBean
-        if(!beans[id]) {
-            me.createBean(id, beanDefinitions[id]);
-        }
+        var bean = beans[id] ? beans[id] : me.createBean(id, beanDefinitions[id]);;
 
         //check to see if injecting a bean property, return accordingly
         if(property) {
             console.log('DEBUG: Injecting bean property  -  id: ' + id + '  -  property: ' + property);
-            return beans[id][property];
+            return bean[property];
         } else {
             console.log('DEBUG: Injecting bean  -  id: ' + id);
-            return beans[id];
+            return bean;
         }
     }
 
