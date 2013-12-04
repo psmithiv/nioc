@@ -1,7 +1,7 @@
 {
   "name": "nioc",
   "description": "IOC/DI for Node.js",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
