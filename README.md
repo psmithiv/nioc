@@ -135,7 +135,7 @@ Lastly, beans may be tagged with "singleton": false. This will instruct nioc to 
 ```
 
 ### Creating Beans
-The recommended approach to creating beans for NIoc is to define class based node.js modules as seen below. When creating the bean, NIoc will automatically create a new instance of the method specified by exports/module.exports. This will allow for the same node.js module to be defined more than once using different id's. Also, this will allow for planned future features such as specifying <b>"singleton": false</b> on the bean definition so that a unique instance of the bean will be returned each time <b>inject('bean id')</b> is called.
+The recommended approach to creating beans for NIoc is to define class based node.js modules as seen below. When creating the bean, NIoc will automatically create a new instance of the method specified by exports/module.exports. This will allow for the same node.js module to be defined more than once using different id's as well as allow for specifying <b>"singleton": false</b> so that a new instance of a bean is created ever time <b>inject('bean id')</b> is called.
 
 ```js
 //wire up module
