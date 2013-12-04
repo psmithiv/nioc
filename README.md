@@ -14,7 +14,7 @@ Released under [MIT License] (https://github.com/psmithiv/nioc/blob/master/LICEN
 * Ability to inject both complete beans as well as individual bean properties.
 
 ## Installation
-From within your project, execute 'npm install nioc' from the command line. Npm will create a nioc folder within the standard node_modules folder. The module it's self will be located in 'node_modules/nioc/bin'.
+From within your project, execute 'npm install nioc' from the command line. Npm will create a nioc folder within the standard node_modules folder. The module it's self will be located in 'node_modules/nioc/lib'.
 
 ## Getting Started
 ### Initializing NIoc
@@ -25,7 +25,7 @@ var nioc = require('nioc');
 new nioc('path to beans.json file');
 ```
 
-<b>NOTE: Since nioc.js is requiring/loading the definitions file. The path is relative to 'node_modules/nioc/bin'. It is reccomended that you set the NODE_PATH environmental variable to the root of your application and reference your bean definitions json file from there.</b>
+<b>NOTE: Since nioc.js is requiring/loading the definitions file. The path is relative to 'node_modules/nioc/lib'. It is recommended that you set the NODE_PATH environmental variable to the root of your application and reference your bean definitions json file from there.</b>
 
 ### Defining Beans
 In your beans.json file, beans are defined as objects and reqire a single 'path' property which references the node.js module to be made available for injection. 
@@ -38,9 +38,9 @@ In your beans.json file, beans are defined as objects and reqire a single 'path'
 }
 ```
 
-<b>NOTE: Since nioc.js is requiring/loading the definitions file. The path is relative to 'node_modules/nioc/bin'. It is reccomended that you set the NODE_PATH environmental variable to the root of your application and reference your bean/module file from there.</b>
+<b>NOTE: Since nioc.js is requiring/loading the definitions file. The path is relative to 'node_modules/nioc/lib'. It is recommended that you set the NODE_PATH environmental variable to the root of your application and reference your bean/module file from there.</b>
 
-Additionaly, there are two other properties that may also be specified on the bean object: 'config' and 'postConstruct'.
+Additionally, there are two other properties that may also be specified on the bean object: 'config' and 'postConstruct'.
 
 #### "config"
 NIoc will create a new instance of the module and pass the value of the config property as an attribute to the method specified.
@@ -96,7 +96,7 @@ Lastly, a 'postConstruct' array may be defined on the bean object. This property
 ```
 
 ### Creating Beans
-The recomended approach to creating beans for NIoc is to define class based node.js modules as seen below. When creating the bean, NIoc will automatically create a new instance of the method specified by exports/module.exports. This will allow for the same node.js module to be defined more than once using different id's. Also, this will allow for planned future features such as specifying <b>"singleton": false</b> on the bean definition so that a unique instance of the bean will be returned each time <b>inject('bean id')</b> is called.
+The recommended approach to creating beans for NIoc is to define class based node.js modules as seen below. When creating the bean, NIoc will automatically create a new instance of the method specified by exports/module.exports. This will allow for the same node.js module to be defined more than once using different id's. Also, this will allow for planned future features such as specifying <b>"singleton": false</b> on the bean definition so that a unique instance of the bean will be returned each time <b>inject('bean id')</b> is called.
 
 ```js
 //wire up module

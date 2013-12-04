@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         removelogging: {
             dist: {
                 src: 'src/<%= pkg.name %>.js',
-                dest: "lib/<%= pkg.name %>.js"
+                dest: 'lib/<%= pkg.name %>.js'
             }
         }
     });
