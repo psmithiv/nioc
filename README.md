@@ -40,7 +40,7 @@ In your beans.json file, beans are defined as objects and reqire a single 'path'
 
 <b>NOTE: Since nioc.js is requiring/loading the definitions file. The path is relative to 'node_modules/nioc/lib'. It is recommended that you set the NODE_PATH environmental variable to the root of your application and reference your bean/module file from there.</b>
 
-Additionally, there are two other properties that may also be specified on the bean object: 'config' and 'postConstruct'.
+Additionally, there are three other properties that may also be specified on the bean object: 'config', 'postConstruct', and 'singleton'.
 
 #### "config"
 NIoc will create a new instance of the module and pass the value of the config property as an attribute to the method specified.
@@ -62,7 +62,7 @@ NIoc will create a new instance of the module and pass the value of the config p
 ```
 
 #### "postConstruct"
-Lastly, a 'postConstruct' array may be defined on the bean object. This property consists of an array of objects containing a 'method' property (required) and an additional 'arguments' property. The 'methods' property defines what method to call on the bean post construction, while the 'arguments' array is a list of values to be passed as attributes to the specified method.
+A 'postConstruct' array may be defined on the bean object. This property consists of an array of objects containing a 'method' property (required) and an additional 'arguments' property. The 'methods' property defines what method to call on the bean post construction, while the 'arguments' array is a list of values to be passed as attributes to the specified method.
 
 ```js
 {
@@ -91,6 +91,45 @@ Lastly, a 'postConstruct' array may be defined on the bean object. This property
                 100
             ]
         }]
+    }
+}
+```
+
+#### "singleton"
+Lastly, beens may be tagged with "singleton": false. This will instruct nioc to create a new instance of the bean every time it is injected.
+
+```js
+{
+    "beanC" : {
+        "path": "path to module to be made available for injection (BeanC.js)"
+    },
+
+    "beanAA": {
+        "path": "path to module to be made available for injection (BeanA.js)",
+        "config": {
+            "configProp1": "foo2",
+            "configProp2": "bar2"
+        }
+    },
+
+    "beanA": {
+        "path": "path to module to be made available for injection (BeanA.js)",
+        "config": {
+            "configProp1": "foo",
+            "configProp2": "bar"
+        },
+        "postConstruct": [{
+            "method": "postConstructA",
+            "arguments": [
+                "postConstructParamString",
+                100
+            ]
+        }]
+    },
+    
+    "beanD": {
+        "path": "path to module to be made available for injection (BeanD.js)",
+        "singleton": false
     }
 }
 ```
