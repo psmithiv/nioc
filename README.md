@@ -211,7 +211,7 @@ var beanProp = inject('bean id', 'bean property');
 ##Examples
 An example of using NIoc can be found in the 'example' folder of this project. To run the example execute 'npm install nioc' from the command line in the example folder and launch server.js via Node.js.
 
-* MEN Stack (mongoose, express, nioc) - Using NIoc with express and mongoose to create REST services (coming soon)
+* MENN Stack (mongoose, express, NIoC, NodeJS) - https://github.com/psmithiv/MENN
 
 ##Roadmap
 * Features:
