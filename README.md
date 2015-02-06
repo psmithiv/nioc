@@ -1,6 +1,6 @@
-#NIoc (node ioc)
+#NIoC (node IoC)
 
-A simple to use IOC container for Node.js.
+A simple to use IoC container for Node.js.
 
 ## License
 Released under [MIT License] (https://github.com/psmithiv/nioc/blob/master/LICENSE).
@@ -17,8 +17,8 @@ Released under [MIT License] (https://github.com/psmithiv/nioc/blob/master/LICEN
 From within your project, execute 'npm install nioc' from the command line. Npm will create a nioc folder within the standard node_modules folder. The module it's self will be located in 'node_modules/nioc/lib'.
 
 ## Getting Started
-### Initializing NIoc
-In your applications index.js/server.js file simply require the NIoc module and instantiate the returned method as a new object passing in the path to your bean definitions json file. If no bean definitions file is specified when calling 'nioc()', NIoc will automatically look for a beans.json file one level up from 'node_modules'.
+### Initializing NIoC
+In your applications index.js/server.js file simply require the NIoC module and instantiate the returned method as a new object passing in the path to your bean definitions json file. If no bean definitions file is specified when calling 'nioc()', NIoC will automatically look for a beans.json file one level up from 'node_modules'.
 
 ```js
 var nioc = require('nioc');
@@ -43,7 +43,7 @@ In your beans.json file, beans are defined as objects and reqire a single 'path'
 Additionally, there are three other properties that may also be specified on the bean object: 'config', 'postConstruct', and 'singleton'.
 
 #### "config"
-NIoc will create a new instance of the module and pass the value of the config property as an attribute to the method specified.
+NIoC will create a new instance of the module and pass the value of the config property as an attribute to the method specified.
 
 ```js
 {
@@ -135,7 +135,7 @@ Lastly, beans may be tagged with "singleton": false. This will instruct nioc to 
 ```
 
 ### Creating Beans
-The recommended approach to creating beans for NIoc is to define class based node.js modules as seen below. When creating the bean, NIoc will automatically create a new instance of the method specified by exports/module.exports. This will allow for the same node.js module to be defined more than once using different id's as well as allow for specifying <b>"singleton": false</b> so that a new instance of a bean is created every time <b>inject('bean id')</b> is called.
+The recommended approach to creating beans for NIoC is to define class based node.js modules as seen below. When creating the bean, NIoC will automatically create a new instance of the method specified by exports/module.exports. This will allow for the same node.js module to be defined more than once using different id's as well as allow for specifying <b>"singleton": false</b> so that a new instance of a bean is created every time <b>inject('bean id')</b> is called.
 
 ```js
 //wire up module
@@ -209,7 +209,7 @@ var beanProp = inject('bean id', 'bean property');
 ```
 
 ##Examples
-An example of using NIoc can be found in the 'example' folder of this project. To run the example execute 'npm install nioc' from the command line in the example folder and launch server.js via Node.js.
+An example of using NIoC can be found in the 'example' folder of this project. To run the example execute 'npm install nioc' from the command line in the example folder and launch server.js via Node.js.
 
 * MENN Stack (mongoose, express, NIoC, NodeJS) - https://github.com/psmithiv/MENN
 
