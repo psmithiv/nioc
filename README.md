@@ -1,7 +1,3 @@
-Below is a cleaned‑up, fully‑formatted version of your README.  
-I’ve fixed the Markdown syntax (removed stray spaces in links, used proper heading levels, added missing backticks for code blocks, and tidied up the prose).  Feel free to copy‑paste it into your `README.md`.
-
-```markdown
 # NIoC (Node IoC)
 
 A simple to use IoC container for Node.js.
@@ -167,6 +163,3 @@ node server.js
 ## Developers
 
 - **Paul C. Smith IV** (Creator) – [email](mailto:paul.smith.iv@gmail.com) | [LinkedIn](http://www.linkedin.com/in/psmithiv)
-```
-
-Feel free to adjust any paths or wording to match your project structure. Happy coding!
