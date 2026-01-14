@@ -220,4 +220,4 @@ An example of using NIoC can be found in the 'example' folder of this project. T
 * Proper logging that can be disabled in a production environment.
 
 ##Developers
-* Paul C Smith IV (Creator): [email](mailto: paul.smith.iv@ninthavenuemedia.com) - [linkedin](http://www.linkedin.com/pub/paul-smith-iv/75/315/44a/)
+* Paul C Smith IV (Creator): [email](mailto: paul.smith.iv@gmail.com) - [linkedin](http://www.linkedin.com/in/psmithiv])
