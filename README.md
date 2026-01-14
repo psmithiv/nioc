@@ -1,223 +1,172 @@
-#NIoC (node IoC)
+Below is a cleaned‑up, fully‑formatted version of your README.  
+I’ve fixed the Markdown syntax (removed stray spaces in links, used proper heading levels, added missing backticks for code blocks, and tidied up the prose).  Feel free to copy‑paste it into your `README.md`.
+
+```markdown
+# NIoC (Node IoC)
 
 A simple to use IoC container for Node.js.
 
 ## License
-Released under [MIT License] (https://github.com/psmithiv/nioc/blob/master/LICENSE).
+Released under the [MIT License](https://github.com/psmithiv/nioc/blob/master/LICENSE).
 
 ## Highlights
-* Beans are defined via a simple JSON file.
-* All beans are created at application launch. 
-* In the event that a bean injects a bean that has not yet been created, it will be created on demand.
-* Ability to pass config objects to beans on creation and/or call bean methods post construction.
-* Injection available via global 'inject' method.
-* Ability to inject both complete beans as well as individual bean properties.
+- Beans are defined via a simple JSON file.
+- All beans are created at application launch.  
+  If a bean injects another that hasn’t yet been created, it will be instantiated on demand.
+- Pass config objects to beans on creation and/or call bean methods after construction.
+- Injection available via the global `inject` method.
+- Inject both whole beans and individual bean properties.
 
 ## Installation
-From within your project, execute 'npm install nioc' from the command line. Npm will create a nioc folder within the standard node_modules folder. The module it's self will be located in 'node_modules/nioc/lib'.
+From within your project, run:
 
-## Getting Started
-### Initializing NIoC
-In your applications index.js/server.js file simply require the NIoC module and instantiate the returned method as a new object passing in the path to your bean definitions json file. If no bean definitions file is specified when calling 'nioc()', NIoC will automatically look for a beans.json file one level up from 'node_modules'.
-
-```js
-var nioc = require('nioc');
-new nioc('path to beans.json file');
+```bash
+npm install nioc
 ```
 
-<b>NOTE: Since nioc.js is requiring/loading the definitions file. The path is relative to 'node_modules/nioc/lib'. It is recommended that you set the NODE_PATH environmental variable to the root of your application and reference your bean definitions json file from there.</b>
+`npm` will create a `nioc` folder in your standard `node_modules`.  
+The module itself lives in `node_modules/nioc/lib`.
 
-### Defining Beans
-In your beans.json file, beans are defined as objects and reqire a single 'path' property which references the node.js module to be made available for injection. 
+## Getting Started
+
+### Initializing NIoC
+In your `index.js`/`server.js`, require the module and instantiate it with a path to your bean‑definitions JSON file.  
+If no file is supplied, NIoC will look for `beans.json` one level up from `node_modules`.
 
 ```js
+const nioc = require('nioc');
+new nioc('path/to/beans.json');   // relative to your project root
+```
+
+> **NOTE**  
+> `nioc.js` loads the definitions file relative to `node_modules/nioc/lib`.  
+> It’s recommended to set the `NODE_PATH` environment variable to your application root and reference the JSON file from there.
+
+### Defining Beans
+In `beans.json`, beans are objects that **must** contain a single `path` property pointing to the module to be injected.
+
+```json
 {
   "beanC": {
-    "path": "path to module to be made available for injection (BeanC.js)"
+    "path": "./lib/BeanC.js"
   }
 }
 ```
 
-<b>NOTE: Since nioc.js is requiring/loading the definitions file. The path is relative to 'node_modules/nioc/lib'. It is recommended that you set the NODE_PATH environmental variable to the root of your application and reference your bean/module file from there.</b>
+> **NOTE**  
+> Paths are relative to `node_modules/nioc/lib`.  
+> Set `NODE_PATH` to the application root for easier referencing.
 
-Additionally, there are three other properties that may also be specified on the bean object: 'config', 'postConstruct', and 'singleton'.
+Other optional properties:
 
-#### "config"
-NIoC will create a new instance of the module and pass the value of the config property as an attribute to the method specified.
+- **`config`** – an object passed to the constructor.
+- **`postConstruct`** – array of `{ method, arguments }` objects to invoke after construction.
+- **`singleton`** – set to `false` to create a new instance on every injection.
 
-```js
+#### Example `beans.json`
+
+```json
 {
-    "beanC" : {
-        "path": "path to module to be made available for injection (BeanC.js)"
-    },
-
-    "beanAA": {
-        "path": "path to module to be made available for injection (BeanA.js)",
-        "config": {
-            "configProp1": "foo2",
-            "configProp2": "bar2"
-        }
+  "beanC": {
+    "path": "./lib/BeanC.js"
+  },
+  "beanAA": {
+    "path": "./lib/BeanA.js",
+    "config": {
+      "configProp1": "foo2",
+      "configProp2": "bar2"
     }
-}
-```
-
-#### "postConstruct"
-A 'postConstruct' array may be defined on the bean object. This property consists of an array of objects containing a 'method' property (required) and an additional 'arguments' property. The 'methods' property defines what method to call on the bean post construction, while the 'arguments' array is a list of values to be passed as attributes to the specified method.
-
-```js
-{
-    "beanC" : {
-        "path": "path to module to be made available for injection (BeanC.js)"
-    },
-
-    "beanAA": {
-        "path": "path to module to be made available for injection (BeanA.js)",
-        "config": {
-            "configProp1": "foo2",
-            "configProp2": "bar2"
-        }
-    },
-
-    "beanA": {
-        "path": "path to module to be made available for injection (BeanA.js)",
-        "config": {
-            "configProp1": "foo",
-            "configProp2": "bar"
-        },
-        "postConstruct": [{
-            "method": "postConstructA",
-            "arguments": [
-                "postConstructParamString",
-                100
-            ]
-        }]
-    }
-}
-```
-
-#### "singleton"
-Lastly, beans may be tagged with "singleton": false. This will instruct nioc to create a new instance of the bean every time it is injected.
-
-```js
-{
-    "beanC" : {
-        "path": "path to module to be made available for injection (BeanC.js)"
-    },
-
-    "beanAA": {
-        "path": "path to module to be made available for injection (BeanA.js)",
-        "config": {
-            "configProp1": "foo2",
-            "configProp2": "bar2"
-        }
-    },
-
-    "beanA": {
-        "path": "path to module to be made available for injection (BeanA.js)",
-        "config": {
-            "configProp1": "foo",
-            "configProp2": "bar"
-        },
-        "postConstruct": [{
-            "method": "postConstructA",
-            "arguments": [
-                "postConstructParamString",
-                100
-            ]
-        }]
-    },
-    
-    "beanD": {
-        "path": "path to module to be made available for injection (BeanD.js)",
-        "singleton": false
-    }
+  },
+  "beanA": {
+    "path": "./lib/BeanA.js",
+    "config": { "configProp1": "foo", "configProp2": "bar" },
+    "postConstruct": [
+      {
+        "method": "postConstructA",
+        "arguments": ["postConstructParamString", 100]
+      }
+    ]
+  },
+  "beanD": {
+    "path": "./lib/BeanD.js",
+    "singleton": false
+  }
 }
 ```
 
 ### Creating Beans
-The recommended approach to creating beans for NIoC is to define class based node.js modules as seen below. When creating the bean, NIoC will automatically create a new instance of the method specified by exports/module.exports. This will allow for the same node.js module to be defined more than once using different id's as well as allow for specifying <b>"singleton": false</b> so that a new instance of a bean is created every time <b>inject('bean id')</b> is called.
+
+Define your modules as ES5 classes (or any constructor function).  
+Nioc will `require()` the module and instantiate it with the supplied config.
 
 ```js
-//wire up module
-exports = module.exports = init;
+// lib/BeanA.js
 
-/**
- * Example BeanA.js
- *
- * @class
- */
+module.exports = init;
+
 function init(config) {
-    /**
-     * @private
-     * @type {*}
-     */
-    var me = this;
+  const me = this;
+  
+  // Public properties
+  me.configProp1 = '';
+  me.configProp2 = '';
 
-    /**
-     * @public
-     * @type {String}
-     */
-    me.configProp1 = '';
+  // Constructor logic
+  function constructor() {
+    me.configProp1 = config.configProp1;
+    me.configProp2 = config.configProp2;
+  }
 
-    /**
-     * @public
-     * @type {String}
-     */
-    me.configProp2 = '';
+  // Post‑construct methods
+  me.postConstructA = function(stringArgument, numberArgument) {
+    console.log(
+      `INFO: BeanA.postConstructA  -  stringArgument: ${stringArgument}  -  numberArgument: ${numberArgument}`
+    );
+  };
 
-    /**
-     * @constructor
-     */
-    function constructor() {
-        me.configProp1 = config.configProp1;
-        me.configProp2 = config.configProp2;
-    };
+  me.postConstructB = function(arrayArgument) {
+    console.log(`INFO: BeanA.postConstructB  -  arrayArgument: ${arrayArgument}`);
+  };
 
-    /**
-    * @public
-    * @param {String} stringArgument
-    * @param {Number} numberArgument
-    */
-    me.postConstructA = function(stringArgument, numberArgument) {
-        console.log('INFO: BeanA.postConstructA  -  stringArgument: ' + stringArgument + '  -  numberArgument: ' numberArgument);
-    }
-
-    /**
-    * @public
-    * @param {Array} arrayArgument
-    */
-    me.postConstructB = function(arrayArgument) {
-        console.log('INFO: BeanA.postConstructB  -  arrayArgument: ' + arrayArgument);
-    }
-
-    //construct object
-    constructor();
+  // Create the instance
+  constructor();
 }
 ```
 
-##Injection
-The last part of the equation is injecting beans. This can be done from any module in one of two ways.
+## Injection
 
-First is to inject an entire bean:
+You can inject whole beans or specific properties from any module.
+
 ```js
-var bean = inject('bean id');
+// Inject the entire bean
+const bean = inject('bean id');
+
+// Inject a single property
+const prop = inject('bean id', 'propertyName');
 ```
 
-Second is to inject a specific bean property:
-```js
-var beanProp = inject('bean id', 'bean property');
+## Examples
+
+An example application lives in the `example` folder.  
+To run it:
+
+```bash
+cd example
+npm install nioc
+node server.js
 ```
 
-##Examples
-An example of using NIoC can be found in the 'example' folder of this project. To run the example execute 'npm install nioc' from the command line in the example folder and launch server.js via Node.js.
+- **MENN Stack** (mongoose, express, NIoC, NodeJS) – <https://github.com/psmithiv/MENN>
 
-* MENN Stack (mongoose, express, NIoC, NodeJS) - https://github.com/psmithiv/MENN
+## Roadmap
 
-##Roadmap
-* Features:
-<br> * Add ability to specify more than one bean definitions file.
-* Unit Tests
-* Proper logging that can be disabled in a production environment.
+- Add ability to specify more than one bean‑definitions file.
+- Unit tests.
+- Configurable logging that can be disabled in production.
 
-##Developers
-* Paul C Smith IV (Creator): [email](mailto: paul.smith.iv@gmail.com) - [linkedin](http://www.linkedin.com/in/psmithiv)
+## Developers
+
+- **Paul C. Smith IV** (Creator) – [email](mailto:paul.smith.iv@gmail.com) | [LinkedIn](http://www.linkedin.com/in/psmithiv)
+```
+
+Feel free to adjust any paths or wording to match your project structure. Happy coding!
